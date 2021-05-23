@@ -57,23 +57,35 @@ http://localhost:8000/api/{id}/properties
 ```
 
 ### Properties:
+
+[GET] - get all properties
 ```
-[GET]     http://localhost:8000/api/properties -> get all properties
+http://localhost:8000/api/properties 
 ```
+
+[GET] - get property with id
 ```
-[GET]     http://localhost:8000/api/properties/{id} -> get property with id
+http://localhost:8000/api/properties/{id} 
 ```
+
+[POST] - save a new property
 ```
-[POST]    http://localhost:8000/api/properties -> save a new property
+http://localhost:8000/api/properties 
 ```
+
+[PUT] - update a property with id
 ```
-[PUT]     http://localhost:8000/api/properties/{id} -> update a property with id
+http://localhost:8000/api/properties/{id} 
 ```
+
+[DELETE] - delete a property with id
 ```
-[DELETE]  http://localhost:8000/api/properties/id -> delete a property with id
+http://localhost:8000/api/properties/id 
 ```
+
+[GET] - toggle purchased boolean value for the oposite 
 ```
-[GET]     http://localhost:8000/api/properties/{id}/purchased-toggle -> toggle purchased boolean value for the oposite 
+http://localhost:8000/api/properties/{id}/purchased-toggle  
 
 ```
 
