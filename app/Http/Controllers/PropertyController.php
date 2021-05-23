@@ -12,7 +12,15 @@ class PropertyController extends Controller
 {
     public function index()
     {
-        return Property::all();
+        $properties = [];
+
+        foreach(Property::all() as $property){
+
+            $property->value = $this->applyDiscount($property);
+            array_push($properties, $property);
+        }
+
+        return $properties;
     }
 
     public function show(Property $property)
@@ -25,6 +33,8 @@ class PropertyController extends Controller
             $property->expired = true;
             $property->save();
         }
+
+        $property->value = $this->applyDiscount($property);
 
         return $property;
     }
@@ -59,5 +69,21 @@ class PropertyController extends Controller
         $property->delete();
 
         return response()->json(null, 204);
+    }
+
+    public function purchasedToggle(Property $property)
+    {
+        $property->purchased = !$property->purchased;
+        $property->save();
+        return $property;
+    }
+
+    private function applyDiscount(Property $property)
+    {
+        $value = $property->value;
+        $discount = $property->discount;
+
+        $valueWithDiscountApplied = $value - ($value * ($discount/100));
+        return $valueWithDiscountApplied;
     }
 }

@@ -35,4 +35,5 @@ Route::prefix('properties')->group(function () {
     Route::post('/', [PropertyController::class, 'store']);
     Route::put('/{property}', [PropertyController::class, 'update']);
     Route::delete('/{property}', [PropertyController::class, 'delete']);
+    Route::get('/{property}/purchased-toggle', [PropertyController::class, 'purchasedToggle']);
 });
