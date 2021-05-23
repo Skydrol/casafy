@@ -24,7 +24,7 @@ You will need to start the server, using this command:
 ```
 The routes are:
 
-###Users:
+### Users:
 
 [GET] - get all user 
 ```
@@ -56,7 +56,7 @@ http://localhost:8000/api/users/id
 http://localhost:8000/api/{id}/properties 
 ```
 
-###Properties:
+### Properties:
 ```
 [GET]     http://localhost:8000/api/properties -> get all properties
 ```
