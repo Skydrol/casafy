@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Models\Property;
 
+use Carbon\Carbon;
+
 class PropertyController extends Controller
 {
     public function index()
@@ -15,14 +17,34 @@ class PropertyController extends Controller
 
     public function show(Property $property)
     {
+        $createdAt = Carbon::createFromFormat('Y-m-d H:s:i', $property->created_at);
+        $today = Carbon::now();
+        $months = $today->diffInMonths($createdAt);
+
+        if($months > 3 && $property->expired == false ){
+            $property->expired = true;
+            $property->save();
+        }
+
         return $property;
     }
 
     public function store(Request $request)
     {
-        $property = Property::create($request->all());
+        $notPurchasedProperties = Property::where(
+            [
+                'purchased' => false,
+                'owner_id' => $request->owner_id
+            ]
+        )->count();
 
-        return response()->json($property, 201);
+        if($notPurchasedProperties < 3){
+            $property = Property::create($request->all());
+            return response()->json($property, 201);
+        }
+
+        return response()->json('An user cannot have more than 3 properties with purchased = false', 200);
+
     }
 
     public function update(Request $request, Property $property)
