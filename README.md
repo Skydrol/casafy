@@ -24,33 +24,39 @@ You will need to start the server, using this command:
 ```
 The routes are:
 
-Users:
+###Users:
+
 [GET] - get all user 
 ```
 http://localhost:8000/api/users 
 ```
+
 [GET] -> get user with id
 ```
 http://localhost:8000/api/users/{id}
 ```
+
 [POST] - save a new user
 ```
 http://localhost:8000/api/users 
 ```
+
 [PUT] - update an user with id
 ```
 http://localhost:8000/api/users/{id} 
 ```
+
 [DELETE] -  delete an user with id
 ```
 http://localhost:8000/api/users/id 
 ```
+
 [GET] - get all properties from a user with id
 ```
 http://localhost:8000/api/{id}/properties 
 ```
 
-Properties:
+###Properties:
 ```
 [GET]     http://localhost:8000/api/properties -> get all properties
 ```
